@@ -1,5 +1,12 @@
 # %%
 """
+Created on Fri Feb  9 21:59:04 2024
+
+@author: juan_
+"""
+
+# %%
+"""
 # Tema 2. Conceptos de estadística y probabilidad usando Python
 
 ## 1. Objetivo
@@ -7,7 +14,10 @@
 Ahora que se ha integrado la data de Oilst, el equipo de `Brasil BI Consulting` 
 puede analizar de los retrazos las órdenes de los cliente, así el objetivo de esta 
 sección será comenzar dicho análisis incorporando elementos de estadística y probabilidad usando Python.
+"""
 
+# %%
+"""
 ## 2. Librerías de trabajo
 """
 
@@ -127,6 +137,11 @@ delivered['total_sales'].min()
 w = (delivered['total_sales'].max() - delivered['total_sales'].min()) / intervalos
 
 print("La amplitud del intervalo es:",w)
+
+# %%
+"""
+Otra manera de determinar los intervalos asi como la amplitud es usar numpy
+"""
 
 # %%
 import numpy as np

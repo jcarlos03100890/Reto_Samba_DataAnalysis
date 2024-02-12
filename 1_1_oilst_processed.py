@@ -1,22 +1,22 @@
-# -*- coding: utf-8 -*-
+# %%
 """
 Created on Sun Jan 28 21:02:51 2024
 
 @author: juan_
 """
+
 # %%
 """
 # Tema 1: Conocimientos sobre Pandas
 
 ## 1. Objetivo
 
-Procesar en Python la información entregada por el equipo de Ingeniería de datos de Oilst de forma 
-funcional para el análisis de los retrasos en las órdenes de los clientes.
+Procesar en Python la información entregada por el equipo de Ingeniería de datos de Oilst de forma funcional para el análisis de los retrasos en las órdenes de los clientes.
 """
 
 # %%
 """
-Este documento se desarrollarán scripts en Python que permitan procesar la  la información de Oilst 
+Este documento se desarrollarán scripts en Python que permitan procesar la  la información de Oilst
 para realizar posteriormente el análisis de sus datos
 """
 
@@ -28,28 +28,28 @@ Utilizaremos las siguientes librerias de python para procesar los archivos y cre
 """
 
 # %%
+
+# %%
+
 import warnings
 import pandas as pd
 import numpy as np
 import os
-from funciones import set_data_path
-
-# %%
-
+from funciones import set_data_path,check_results_folder
 warnings.filterwarnings('ignore')
 
 # %%
 """
 ## 3. Lectura de datos
 
-Primero nos encargaremos de leer los datos, indicando a Python donde se encuentra 
+Primero nos encargaremos de leer los datos, indicando a Python donde se encuentra
 la carpeta que contiene los datos y los nombres de los archivos relevantes para el análisis.
 """
 
 # %%
 #  Indicamos la ruta a la carpeta de los archivos a procesarse de los datos del E-commerce
 
-# Ya que los archivos se encuentran en el mismo folder solo en la carpeta inputs, 
+# Ya que los archivos se encuentran en el mismo folder solo en la carpeta inputs,
 # utilizamos la funcion set_data_path para identificar la carpeta donde estan los archivos a trabajar
 
 # Set the file path
@@ -58,7 +58,7 @@ DATA_PATH = set_data_path("inputs")
 
 # %%
 """
-Ahora procederemos a definir variables que indiquen el nombre de los archivos junto con 
+Ahora procederemos a definir variables que indiquen el nombre de los archivos junto con
 su extensión (por ejemplo, `.csv`, `.json` u otra).
 """
 
@@ -233,13 +233,11 @@ orders['year_month'] = orders['month'].astype(
 
 # %%
 """
-Por otro lado, también necesitamos identificar las órdenes que tuvieron retrasos prolongados. 
+Por otro lado, también necesitamos identificar las órdenes que tuvieron retrasos prolongados.
 Recordemos que de acuerdo a la documentación del `Anexo A`:
 
-    * Oilst notifica el usuario de cuando llegará su pedido con el valor de la 
-    columna `order_estimated_delivery_date`,
-    * Además la fecha real en que se llevó la entrega se encuentra en el campo 
-    `order_delivered_customer_date`
+* Oilst notifica el usuario de cuando llegará su pedido con el valor de la columna `order_estimated_delivery_date`,
+* Además la fecha real en que se llevó la entrega se encuentra en el campo `order_delivered_customer_date`
 
 A continuación calcularemos distancia (en días) entre ambas fecha definiendo a la variable `delta_days`:
 """
@@ -258,16 +256,13 @@ orders['delta_days'] = (
 """
 En el contexto del problema, los valores de `delta_days` tiene el significado:
 
-* Un valor negativo en `delta_days` significa que el pedido llego antes de lo esperado; es decir, 
-no existió retraso.
-* Un valor de `delta_days`, mayor a 0 días pero menor a 3 días, significa que es un retrazo aceptable,
+* Un valor negativo en `delta_days` significa que el pedido llego antes de lo esperado; es decir, no existió retraso.
+* Un valor de `delta_days`, mayor a 0 días pero menor a 3 días, significa que es un retrazo aceptable, 
 * Sin embargo, si `delta_days` es más grande que 3 días esto significa que tenemos un retrazo prolongado.
 
-Crearemos una variable `delay_status` para indicar la discusión anterior usando el operador `where` 
-de Numpy (https://towardsdatascience.com/creating-conditional-columns-on-pandas-with-numpy-select-and-where-methods-8ee6e2dbd5d5).
+Crearemos una variable `delay_status` para indicar la discusión anterior usando el operador `where` de Numpy (https://towardsdatascience.com/creating-conditional-columns-on-pandas-with-numpy-select-and-where-methods-8ee6e2dbd5d5).
 
-Esencialmente, el operador `where` de Numpy permite definir variables siguiendo reglas 
-lógicas de manera condicional, similar al `if ... else ...` de Python:
+Esencialmente, el operador `where` de Numpy permite definir variables siguiendo reglas lógicas de manera condicional, similar al `if ... else ...` de Python:
 """
 
 # %%
@@ -281,8 +276,7 @@ orders['delay_status'] = np.where(
 """
 ### 3.5 olist_geolocation_dataset
 
-Aunque anteriormente hemos leído este archivo, debemos notar que contiene información r
-edudante de muchos codigos postales, como en el caso del valor `24220`:
+Aunque anteriormente hemos leído este archivo, debemos notar que contiene información redudante de muchos codigos postales, como en el caso del valor `24220`:
 
 """
 
@@ -314,14 +308,14 @@ unique_geolocations.query(
 """
 ## 4. Procesamiento global
 
-Ahora que hemos cargado a Pandas los datos del E-commerce, debemos **consolidar toda la información** 
-en una sola tabla, lo que nos permitirá centralizar el análisis y hacer comparativos.
+Ahora que hemos cargado a Pandas los datos del E-commerce, debemos **consolidar toda la información** en una sola tabla, lo que nos permitirá centralizar el análisis y hacer comparativos.
 
 Para ello, nos proponemos lo siguiente:
+    
 1. A los datos de clientes le añadiremos los datos de geolocalización. **(Clientes + geolocalización)**
-2. Tales datos se complementarán añadiendo los datos del nombre del estado de Brasil en que se localizan. 
+2. Tales datos se complementarán añadiendo los datos del nombre del estado de Brasil en que se localizan.
 (**Clientes + geolocalización + nombre del estado donde viven**)
-3. Posteriormente archivo de órdenes, agregaremos los datos del precio y cantidad de artículos. 
+3. Posteriormente archivo de órdenes, agregaremos los datos del precio y cantidad de artículos.
 **(Órdenes + total de artículos y precios)**
 4. Finalmente, uniremos toda la información de los pasos 2 y 3 en una sola tabla.
 """
@@ -392,6 +386,15 @@ results = orders_totals.merge(
 
 # %%
 results.info()
+
+# %%
+"""
+Antes de guardar los resultados, verificacmos si existen las carpetas para guardar los resultados
+"""
+
+# %%
+
+check_results_folder()
 
 # %%
 """

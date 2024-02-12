@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# %%
 """
 Created on Sun Feb 11 11:27:55 2024
 
@@ -15,6 +15,10 @@ Con el objeto de ampliar el análisis de Oilst y más interactivo hacia el públ
 
 Con ello en mente, el objetivo de la presente sección será trabajar con el módulo `Plotly Express` de la librería `Plotly` de Python (https://plotly.com/python/). Ésta es una librería para realizar gráficos interactivos en Python de amplio espectro.
 
+"""
+
+# %%
+"""
 ## 2. Librerias de trabajo
 """
 
@@ -56,8 +60,14 @@ oilst = oilst.merge(regions[['abbreviation', 'region']],
                     on='abbreviation', how='left')
 
 oilst.info()
+
 # %%
-# A su vez transformaremos el nombre de la ciudades a un formato de título, es decir, las primeras letras de las palabras estarán en mayúsculas.
+"""
+A su vez transformaremos el nombre de la ciudades a un formato de título, es decir, las primeras letras de las palabras estarán en mayúsculas.
+"""
+
+# %%
+
 oilst['geolocation_city'] = oilst['geolocation_city'].str.title()
 
 # %%
@@ -68,9 +78,8 @@ así que tenemos que obtener el subconjunto de datos correspondiente.
 
 # %%
 # Condicion  lógica para filtrar (solo ordenes entregadas)
-delivered_filter = "order_status  == 'delivered'"
 
-delivered = oilst.query(delivered_filter)
+delivered = oilst.query("order_status  == 'delivered'")
 
 # %%
 """

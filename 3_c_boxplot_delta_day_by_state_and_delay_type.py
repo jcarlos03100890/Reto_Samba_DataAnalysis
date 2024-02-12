@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# %%
 """
 Created on Sat Feb 10 14:24:47 2024
 
@@ -15,22 +15,24 @@ Para enriquecer el análisis de Oilst y hacerlo más accesible al público no es
 
 Con ello en mente, el objetivo de la presente sección será trabajar con la librería `Seaborn` de Python (https://seaborn.pydata.org) para abundar en el análisis correspondiente. Seaborn es una librería para implementar gráficos estadísticos en Python, que se basa en `matplotlib` y se integra estrechamente con las estructuras de datos de `pandas`.
 
+"""
+
+# %%
+"""
 ## 2. Librerias de trabajo
 """
 
 # %%
 
+import warnings
 
 # Libreria de visualización
-
-
-import warnings
-import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+
 from funciones import read_data
+
 warnings.filterwarnings('ignore')
 
 
@@ -53,9 +55,7 @@ así que tenemos que obtener el subconjunto de datos correspondiente.
 
 # %%
 # Condicion  lógica para filtrar (solo ordenes entregadas)
-delivered_filter = "order_status  == 'delivered'"
-
-delivered = oilst.query(delivered_filter)
+delivered = oilst.query("order_status  == 'delivered'")
 
 # %%
 """
@@ -74,7 +74,6 @@ Hint: Revisar la documentación de `.catplot`
 En esta sección se mostrarán visualizaciones de los tiempos promedios por entrega en cada estado. 
 Para ello se estimará el valor medio de los retrazos.
 """
-# %%
 
 # %%
 g = sns.catplot(
@@ -101,8 +100,6 @@ g.fig.suptitle(
 
 g.savefig(
     'results/3/3_c_boxplot_delta_day_by_state_and_delay_type.png', dpi=600)
-
-
 
 # %%
 states = delivered['state_name'].dropna().unique()

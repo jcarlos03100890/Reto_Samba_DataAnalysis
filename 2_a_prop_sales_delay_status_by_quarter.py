@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# %%
 """
 Created on Fri Feb  9 21:59:04 2024
 
@@ -11,10 +11,12 @@ Created on Fri Feb  9 21:59:04 2024
 
 ## 1. Objetivo
 
-Ahora que se ha integrado la data de Oilst, el equipo de `Brasil BI Consulting` 
-puede analizar de los retrazos las órdenes de los cliente, así el objetivo de esta 
-sección será comenzar dicho análisis incorporando elementos de estadística y probabilidad usando Python.
+Ahora que se ha integrado la data de Oilst, el equipo de `Brasil BI Consulting`puede analizar de los retrazos las órdenes de los cliente, así el objetivo de esta sección será comenzar dicho análisis incorporando elementos de estadística y probabilidad usando Python.
 
+"""
+
+# %%
+"""
 ## 2. Librerías de trabajo
 """
 
@@ -35,9 +37,11 @@ warnings.filterwarnings('ignore')
 """
 ## 3. Lectura de datos
 
- Leeremos los datos, indicando a Python donde se encuentra la carpeta que se aloja los datos 
- y los nombres de los archivos relevantes para el análisis.
+Leeremos los datos, indicando a Python donde se encuentra la carpeta que se aloja los datos y los nombres de los archivos relevantes para el análisis.
+
 """
+
+# %%
 
 oilst = read_data("results/1")
 
@@ -46,38 +50,18 @@ oilst = read_data("results/1")
 """
 En este análisis únicamente nos interesarán las órdenes completadas, 
 así que tenemos que obtener el subconjunto de datos correspondiente. 
-La utilidad de pandas que no servirá para dicho propósito es `.query()` 
-(https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html). 
-En su interior debemos espeficar como texto una cadena lógica que indique que 
-valor de una columna queremos obtener (`"order_status  == 'delivered' "`)
+
 """
 
 # %%
-# Condicion  lógica para filtrar (solo ordenes entregadas)
-delivered_filter = "order_status  == 'delivered' "
 
-delivered = oilst.query(delivered_filter)
-
-# %%
-"""
-Ahora podemos ver una muestra de este nuevo subconjunto de datos:
-"""
-
-# %%
-delivered.sample(5)
-
-# %%
-"""
-La cantidad de renglones y columnas totales en este dataframe se puede obtener con el método `.shape`
-"""
-
-# %%
-delivered.shape
+delivered = oilst.query("order_status  == 'delivered' ")
 
 # %%
 """
 Script que calcule la proporción que han representado las ventas de órdenes completas de Oilst dentro 
 de los categorías de `delay_status` y a los largo de los trimestres de 2016 a 2018. 
+
 El resultado de este script deberá ser un tabla denominada `prop_sales_delay_status_by_quarte.csv`.
 """
 
@@ -128,8 +112,6 @@ data.to_csv(
     # flag para no escribir el indice del dataframe al csv
     index=False
 )
-
-
 
 # %%
 """

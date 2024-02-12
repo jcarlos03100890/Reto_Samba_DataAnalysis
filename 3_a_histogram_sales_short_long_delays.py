@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# %%
 """
 Created on Sat Feb 10 12:47:36 2024
 
@@ -15,6 +15,9 @@ Para enriquecer el análisis de Oilst y hacerlo más accesible al público no es
 
 Con ello en mente, el objetivo de la presente sección será trabajar con la librería `Seaborn` de Python (https://seaborn.pydata.org) para abundar en el análisis correspondiente. Seaborn es una librería para implementar gráficos estadísticos en Python, que se basa en `matplotlib` y se integra estrechamente con las estructuras de datos de `pandas`.
 
+"""
+# %%
+"""
 ## 2. Librerias de trabajo
 """
 
@@ -42,6 +45,8 @@ warnings.filterwarnings('ignore')
  
 """
 
+# %%
+
 oilst = read_data("results/1")
 
 
@@ -49,51 +54,25 @@ oilst = read_data("results/1")
 """
 En este análisis únicamente nos interesarán las órdenes completadas, 
 así que tenemos que obtener el subconjunto de datos correspondiente. 
-La utilidad de pandas que no servirá para dicho propósito es `.query()` 
-(https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html). 
-En su interior debemos espeficar como texto una cadena lógica que indique que 
-valor de una columna queremos obtener (`"order_status  == 'delivered' "`)
 """
 
 # %%
 # Condicion  lógica para filtrar (solo ordenes entregadas)
-delivered_filter = "order_status  == 'delivered'"
 
-delivered = oilst.query(delivered_filter)
-
-# %%
-"""
-Ahora podemos ver una muestra de este nuevo subconjunto de datos:
-"""
-
-# %%
-delivered.sample(5)
+delivered = oilst.query("order_status  == 'delivered'")
 
 # %%
 """
-La cantidad de renglones y columnas totales en este dataframe se puede obtener con el método `.shape`
+A. Script que construya una visualización que permita comparar los histogramas de las ventas de órdenes completas que tuvieron retrazos moderados y prolongados. Este script tendrá el nombre `3_a_histogram_sales_short_long_delays.py` y la imagen resultante deberá denominarse `3_a_histogram_sales_short_long_delays.png`.
 """
 
 # %%
-delivered.shape
-
-delivered.info()
-
-# %%
-"""
-Realizar un script que construya una visualización que permita comparar los histogramas de las ventas 
-de órdenes completas que tuvieron retrazos moderados y prolongados.
-"""
-
-# %%
-### 4.2 Uso de la variable `hue`
+### Uso de la variable `hue`
 
 """
 Como se ha mencionado antes, las implementaciones de Seaborn son muy flexibles y permite añadir segmentaciones de una visualización usando los mismos códigos que antes, pero segmentando por una variable categórica especificada en la variable `hue='nombre_variable_categórica'`.
 
-A continuación se presentan algunos ejemplos de visualizaciones ya implementadas:
-
-**Histogramas**
+Para establecer el numero de inventarios, usamos bins="auto". Sin embargo para establecer los intervalos usando ploty, usaremos los calculados en el script 2_c
 """
 
 # %%

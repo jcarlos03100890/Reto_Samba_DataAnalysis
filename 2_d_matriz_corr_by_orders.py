@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# %%
 """
 Created on Fri Feb  9 23:23:53 2024
 
@@ -15,6 +15,10 @@ Ahora que se ha integrado la data de Oilst, el equipo de `Brasil BI Consulting`
 puede analizar de los retrazos las órdenes de los cliente, así el objetivo de esta 
 sección será comenzar dicho análisis incorporando elementos de estadística y probabilidad usando Python.
 
+"""
+
+# %%
+"""
 ## 2. Librerías de trabajo
 """
 
@@ -40,6 +44,8 @@ warnings.filterwarnings('ignore')
  
 """
 
+# %%
+
 oilst = read_data("results/1")
 
 
@@ -47,35 +53,12 @@ oilst = read_data("results/1")
 """
 En este análisis únicamente nos interesarán las órdenes completadas, 
 así que tenemos que obtener el subconjunto de datos correspondiente. 
-La utilidad de pandas que no servirá para dicho propósito es `.query()` 
-(https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html). 
-En su interior debemos espeficar como texto una cadena lógica que indique que 
-valor de una columna queremos obtener (`"order_status  == 'delivered' "`)
 """
 
 # %%
 # Condicion  lógica para filtrar (solo ordenes entregadas)
-delivered_filter = "order_status  == 'delivered' "
 
-delivered = oilst.query(delivered_filter)
-
-# %%
-"""
-Ahora podemos ver una muestra de este nuevo subconjunto de datos:
-"""
-
-# %%
-delivered.sample(5)
-
-# %%
-"""
-La cantidad de renglones y columnas totales en este dataframe se puede obtener con el método `.shape`
-"""
-
-# %%
-delivered.shape
-
-delivered.info()
+delivered = oilst.query("order_status  == 'delivered' ")
 
 # %%
 """

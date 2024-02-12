@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# %%
 """
 Created on Sat Feb 10 13:44:53 2024
 
@@ -15,20 +15,24 @@ Para enriquecer el análisis de Oilst y hacerlo más accesible al público no es
 
 Con ello en mente, el objetivo de la presente sección será trabajar con la librería `Seaborn` de Python (https://seaborn.pydata.org) para abundar en el análisis correspondiente. Seaborn es una librería para implementar gráficos estadísticos en Python, que se basa en `matplotlib` y se integra estrechamente con las estructuras de datos de `pandas`.
 
+"""
+
+# %%
+"""
 ## 2. Librerias de trabajo
 """
 
 # %%
 
+import warnings
 
 # Libreria de visualización
-
-
-import warnings
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+
 from funciones import read_data
+
 warnings.filterwarnings('ignore')
 
 
@@ -47,17 +51,12 @@ oilst = read_data("results/1")
 """
 En este análisis únicamente nos interesarán las órdenes completadas, 
 así que tenemos que obtener el subconjunto de datos correspondiente. 
-La utilidad de pandas que no servirá para dicho propósito es `.query()` 
-(https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html). 
-En su interior debemos espeficar como texto una cadena lógica que indique que 
-valor de una columna queremos obtener (`"order_status  == 'delivered' "`)
 """
 
 # %%
 # Condicion  lógica para filtrar (solo ordenes entregadas)
-delivered_filter = "order_status  == 'delivered'"
 
-delivered = oilst.query(delivered_filter)
+delivered = oilst.query("order_status  == 'delivered'")
 
 # %%
 """

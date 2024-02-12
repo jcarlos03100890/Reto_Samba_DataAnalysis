@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# %%
 """
 Created on Fri Feb  9 21:59:04 2024
 
@@ -14,7 +14,10 @@ Created on Fri Feb  9 21:59:04 2024
 Ahora que se ha integrado la data de Oilst, el equipo de `Brasil BI Consulting` 
 puede analizar de los retrazos las órdenes de los cliente, así el objetivo de esta 
 sección será comenzar dicho análisis incorporando elementos de estadística y probabilidad usando Python.
+"""
 
+# %%
+"""
 ## 2. Librerías de trabajo
 """
 
