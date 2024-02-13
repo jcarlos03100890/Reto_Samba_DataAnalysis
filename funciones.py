@@ -1,7 +1,6 @@
 # %%
 """
-
-### Funciones auxiliares
+Funciones auxiliares
 
 Created on Fri Feb  9 21:35:00 2024
 
@@ -18,17 +17,19 @@ Created on Fri Feb  9 21:35:00 2024
 
 # Importamos las librerias requeridas
 
-
-# %%
-# Primero indicamos la ruta a la carpeta donde se encuentran los archivos a procesarse
-# indicamos en que subfolder se encuentran y construimos la valiable PATH
-
-
-
-
 import json
 import os
 import pandas as pd
+
+
+# %%
+"""
+Primero indicamos la ruta a la carpeta donde se encuentran los archivos a procesarse
+indicamos en que subfolder se encuentran y construimos la valiable PATH
+"""
+
+# %%
+
 def set_data_path(folder):
     # Set the file path
     current_path = os.getcwd()
@@ -46,6 +47,7 @@ def set_data_path(folder):
 En esta funcion leemos el archivo de datos consolidado
 """
 
+# %%
 
 def read_data(folder):
 
@@ -85,6 +87,7 @@ def read_data(folder):
 Leemos el archivo de regiones, 
 """
 
+# %%
 
 def get_data_region(folder):
 
@@ -101,7 +104,7 @@ def get_data_region(folder):
 Leemos el archivo brasil_geodata.json
 """
 
-
+# %%
 def get_geo_data(folder):
 
     DATA_PATH = set_data_path(folder)
@@ -116,8 +119,10 @@ def get_geo_data(folder):
 
 # %%
 """
+Revisamos la carpeta de resultados
 """
 
+# %%
 def check_results_folder():
     
     current_path = os.getcwd()
