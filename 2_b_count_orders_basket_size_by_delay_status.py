@@ -105,7 +105,8 @@ Donde observamos que la mayoria de las ordenes consisten uno o dos productos
 
 orders_basket_size_by_delay_status = delivered.groupby(
     ['total_products', 'delay_status']).aggregate(
-        {'order_id': 'count', }
+        {'order_id': 'count', 
+         'total_sales':'sum'}
 ).reset_index().rename(
     columns={'order_id': 'orders', }
 )
@@ -132,9 +133,19 @@ fig = px.bar(orders_basket_size_by_delay_status.query("total_products < 7"),
              y="orders", 
              color="delay_status", 
              barmode='group',
-             labels={'total_products':'Total de Productos','orders':'Numero de Ordenes','delay_status':'Tipo de Retrazo'})
+             labels={'total_products':'Total de Productos','orders':'Numero de Ordenes','delay_status':'Tipo de Retrazo'},
+             custom_data=["delay_status","total_sales"])
 
 fig.update_layout(title="Conteo de ordenes por cantidad de productos por tipo de retrazo")
+
+fig.update_traces(
+    hovertemplate="<br>".join([
+        "Total de Productos: %{x}",
+        "Numero de Ordenes: %{y}",
+        "Tipo de Retrazo: %{customdata[0]}",
+        "Total de Ventas: %{customdata[1]}"
+    ])
+)
 
 fig.write_html("results/2/count_orders_basket_size_by_delay_status.html")
 
