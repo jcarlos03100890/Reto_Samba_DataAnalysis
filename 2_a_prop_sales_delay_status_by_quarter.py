@@ -106,6 +106,8 @@ data = delivered.pivot_table(
 
 print(data)
 
+# Guardamos la tabla
+
 data.to_csv(
     # nombre del archivo
     'results/2/prop_sales_delay_status_by_quarter.csv',

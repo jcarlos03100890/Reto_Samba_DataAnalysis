@@ -88,7 +88,7 @@ results = pd.crosstab(
     margins=True
 ).sort_values(['long_delay'])
 
-
+# Guardar los resultados
 results.to_csv(
     # nombre del archivo
     'results/2/count_orders_basket_size_by_delay_status.csv')
@@ -103,6 +103,8 @@ Donde observamos que la mayoria de las ordenes consisten uno o dos productos
 """
 # %%
 
+#Visualizacion estatica del tipo de retrazo por conteo de productos
+
 orders_basket_size_by_delay_status = delivered.groupby(
     ['total_products', 'delay_status']).aggregate(
         {'order_id': 'count', 
@@ -114,6 +116,8 @@ orders_basket_size_by_delay_status = delivered.groupby(
 orders_basket_size_by_delay_status
 
 # %%
+
+#Visualizacion estatica del tipo de retrazo por conteo de productos
 
 ax=sns.barplot(data = orders_basket_size_by_delay_status.query("total_products < 7"),
                  x = "total_products", 
@@ -127,7 +131,7 @@ plt.savefig('results/2/count_orders_basket_size_by_delay_status.png')
 
 
 # %%
-# Create the grouped bar chart
+#Visualizacion dinamica del tipo de retrazo por conteo de productos
 fig = px.bar(orders_basket_size_by_delay_status.query("total_products < 7"), 
              x="total_products", 
              y="orders", 
