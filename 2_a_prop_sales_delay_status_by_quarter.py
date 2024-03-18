@@ -123,6 +123,7 @@ muestre las proporciones de ventas por tipo de retrazo a lo largo de los trimest
 Sin embargo, para una mejor lectura, crearemos una visualizacion estatica y una dinamica 
 para mostrar los datos de total de ventas por tipo de retrazo a lo largo de los trimestres.
 """
+
 # %%
 # Creamos una pivot table con la suma de las ventas agrupadas por tipo retrazo por trimestre, 
 

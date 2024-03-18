@@ -104,6 +104,7 @@ Paso 1: Determinar el número de intervalos o clases
 
 Para determinar el número de intervalos o clases usaremos la raiz cuadrada de los datos
 """
+
 # %%
 # Obtenemos eltotal de datos
 tota_datos=delivered['order_id'].count()
@@ -148,7 +149,6 @@ import numpy as np
 # Calculate the optimal number of bins using the Freedman-Diaconis rule
 
 bins = np.histogram_bin_edges(delivered['total_sales'], 'auto')
-
 
 
 # %%
