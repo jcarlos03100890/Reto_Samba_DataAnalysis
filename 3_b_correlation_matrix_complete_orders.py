@@ -44,6 +44,8 @@ warnings.filterwarnings('ignore')
  
 """
 
+# %%
+
 oilst = read_data("results/1")
 
 

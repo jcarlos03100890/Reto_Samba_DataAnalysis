@@ -16,6 +16,7 @@ Para enriquecer el análisis de Oilst y hacerlo más accesible al público no es
 Con ello en mente, el objetivo de la presente sección será trabajar con la librería `Seaborn` de Python (https://seaborn.pydata.org) para abundar en el análisis correspondiente. Seaborn es una librería para implementar gráficos estadísticos en Python, que se basa en `matplotlib` y se integra estrechamente con las estructuras de datos de `pandas`.
 
 """
+
 # %%
 """
 ## 2. Librerias de trabajo
@@ -60,6 +61,7 @@ así que tenemos que obtener el subconjunto de datos correspondiente.
 # Condicion  lógica para filtrar (solo ordenes entregadas)
 
 delivered = oilst.query("order_status  == 'delivered'")
+
 
 # %%
 """

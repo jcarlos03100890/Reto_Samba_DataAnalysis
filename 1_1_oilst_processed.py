@@ -29,8 +29,6 @@ Utilizaremos las siguientes librerias de python para procesar los archivos y cre
 
 # %%
 
-# %%
-
 import warnings
 import pandas as pd
 import numpy as np
@@ -250,7 +248,6 @@ orders['delta_days'] = (
     orders['order_delivered_customer_date'] -
     orders['order_estimated_delivery_date']
 ).dt.total_seconds() / 60 / 60 / 24
-
 
 # %%
 """

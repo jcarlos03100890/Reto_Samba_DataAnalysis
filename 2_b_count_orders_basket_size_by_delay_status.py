@@ -33,12 +33,15 @@ warnings.filterwarnings('ignore')
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+
 # %%
 """
 ## 3. Lectura de datos
 
  Leeremos los datos, usando una funcion previamente definida
 """
+
+# %%
 
 oilst = read_data("results/1")
 
@@ -101,6 +104,7 @@ Despues de analizar la cantidad de ordenes por cantidad de productos por tipo de
 una tabla no nos dice mucho, asi que creamos esta grafica con los primeros resultados
 Donde observamos que la mayoria de las ordenes consisten uno o dos productos
 """
+
 # %%
 
 #Visualizacion estatica del tipo de retrazo por conteo de productos

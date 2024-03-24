@@ -42,6 +42,8 @@ warnings.filterwarnings('ignore')
  
 """
 
+# %%
+
 oilst = read_data("results/1")
 
 
@@ -56,6 +58,7 @@ así que tenemos que obtener el subconjunto de datos correspondiente.
 delivered = oilst.query("order_status  == 'delivered'")
 
 delivered.info()
+
 # %%
 """
 C.Programa que construya el histograma de frecuencias de la variable `total_sales`, 
