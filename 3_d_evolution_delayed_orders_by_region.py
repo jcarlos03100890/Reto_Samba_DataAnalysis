@@ -118,6 +118,18 @@ orders_time_delay_status['year_month'] = pd.to_datetime(
 orders_time_delay_status = orders_time_delay_status.sort_values(
     by='year_month')
 
+
+# %%
+orders_time_delay_status.query(
+        "delay_status == 'long_delay'"
+    ).to_csv(
+    # nombre del archivo
+    'results/3/3_d_evolution_delayed_orders_by_region.csv',
+    # flag para no escribir el indice del dataframe al csv
+    index=False
+)
+
+
 # %%
 # Crea la visualizacion
 fig = px.bar(
@@ -129,10 +141,12 @@ fig = px.bar(
     color='region',
     text_auto=True,
     facet_row="delay_status",
-    title='Evolicion del Número de órdenes con retraso prolongado por Region'
+    title='Evolución del Número de órdenes con retraso prolongado por Region'
 )
 # Guardar la figura en un archivo html
 fig.write_html(
     "results/3/3_d_evolution_delayed_orders_by_region.html")
 # Muestra la figura
 #fig.show()
+
+# %%
